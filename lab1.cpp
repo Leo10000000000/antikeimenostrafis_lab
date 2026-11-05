@@ -4,8 +4,8 @@
 
 using namespace std;
 
-int protein_count;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Protein {
     private:
         string id;
@@ -13,14 +13,16 @@ class Protein {
         string sequence;
 
     public:
+        static int protein_count;
+
         Protein(string id_0, string name_0, string sequence_0)
             : id(id_0), name(name_0), sequence(sequence_0){
-                protein_count += 1;
+                protein_count++;
                 cout << "Protein: " << name << " is initialized" << endl;
             }
 
         ~Protein(){
-            protein_count -=1;
+            protein_count--;
             cout << "Protein: " << name << " was destroyed" << endl;
         }
 
@@ -36,9 +38,10 @@ class Protein {
 
         int length(){return sequence.length();};
 };
+int Protein::protein_count = 0;
 
-int gene_count;
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class Gene {
     private:
         string id;
@@ -49,14 +52,16 @@ class Gene {
         char strand;
 
     public:
+        static int gene_count;
+
         Gene(string id_0, string name_0, string chrom_0, int start_0, int end_0, char strand_0)
             : id(id_0), name(name_0), chrom(chrom_0), start(start_0), end(end_0), strand(strand_0){
-                gene_count += 1;
+                gene_count++;
                 cout << "Gene: " << name << " is initialized" << endl;
             }
 
         ~Gene(){
-            gene_count -= 1;
+            gene_count--;
             cout << "Gene: " << name << " was destroyed" << endl;
         }
 
@@ -70,8 +75,11 @@ class Gene {
         string describe() const {return "Gene " + name + " (" + chrom + ":" + to_string(start) + "-" + to_string(end) + ", " + string(1, strand) + ").";}
 };
 
+int Gene::gene_count = 0;
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(){
 
     vector <Protein> prot_vec;
